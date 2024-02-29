@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import { ref } from 'vue'
+import CodeEditor from '@/components/CodeEditor.vue'
 
 const rail = ref(false)
 </script>
@@ -20,9 +21,14 @@ const rail = ref(false)
       <RouterView />
     </v-main>
     <v-footer app :height="500">
-      <v-row>
-        Code Area
-      </v-row>
+        <v-row class="fill-height" align-items="stretch">
+          <v-col>
+            <CodeEditor/>
+          </v-col>
+          <v-col>
+
+          </v-col>
+        </v-row>
     </v-footer>
   </v-app>
 </template>
