@@ -19,6 +19,11 @@ const rail = ref(false)
     <v-main>
       <RouterView />
     </v-main>
+    <v-footer app :height="500">
+      <v-row>
+        Code Area
+      </v-row>
+    </v-footer>
   </v-app>
 </template>
 
