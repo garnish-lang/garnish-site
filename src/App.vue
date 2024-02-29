@@ -23,7 +23,7 @@ const rail = ref(false)
         <RouterView />
       </v-container>
     </v-main>
-    <v-footer app :height="500">
+    <v-footer app :height="750">
       <v-row>
         <v-col>
           <v-btn block size="small" variant="text">
@@ -73,6 +73,11 @@ const rail = ref(false)
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  align-content: start;
+}
+
+.v-footer > .v-row:nth-child(1), .v-footer > .v-row:nth-child(2) {
+  flex-grow: 0;
 }
 
 .no-scroll {
