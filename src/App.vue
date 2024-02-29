@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router'
 import { ref } from 'vue'
 import CodeEditor from '@/components/CodeEditor.vue'
+import ResultsView from '@/components/ResultsView.vue'
 
 const rail = ref(false)
 </script>
@@ -18,20 +19,69 @@ const rail = ref(false)
       <v-list-item link title="Data Types" to="/data-types" prepend-icon="mdi-chart-arc"></v-list-item>
     </v-navigation-drawer>
     <v-main>
-      <RouterView />
+      <v-container>
+        <RouterView />
+      </v-container>
     </v-main>
     <v-footer app :height="500">
-        <v-row class="fill-height" align-items="stretch">
-          <v-col>
-            <CodeEditor/>
-          </v-col>
-          <v-col>
-
-          </v-col>
-        </v-row>
+      <v-row>
+        <v-col>
+          <v-btn block size="small" variant="text">
+            <v-icon icon="mdi-arrow-split-horizontal"></v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col class="overflow-hidden">
+          <v-tabs show-arrows>
+            <v-tab v-for="i in 10" :key="i" :value="'script' + i">
+              Script {{ i }}
+            </v-tab>
+          </v-tabs>
+        </v-col>
+        <v-col>
+          <v-row>
+            <v-col>
+              <v-btn size="large" variant="tonal">New</v-btn>
+            </v-col>
+            <v-col>
+              <v-btn size="large" variant="tonal">Rename</v-btn>
+            </v-col>
+            <v-col>
+              <v-btn size="large" variant="tonal">Delete</v-btn>
+            </v-col>
+            <v-col>
+              <v-btn size="large" variant="tonal">Execute</v-btn>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+      <v-row class="no-scroll" align-items="stretch">
+        <v-col>
+          <CodeEditor />
+        </v-col>
+        <v-col class="scrollable">
+          <ResultsView />
+        </v-col>
+      </v-row>
     </v-footer>
   </v-app>
 </template>
 
 <style scoped>
+.v-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.scrollable {
+  overflow-y: scroll;
+  max-height: 100%;
+}
+
 </style>
