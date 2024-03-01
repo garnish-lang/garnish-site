@@ -76,6 +76,12 @@ function executeScript() {
   store.executeScript(store.currentScript)
 }
 
+function executionListSelect(value) {
+  if (value.id === "clear") {
+    store.clearExecutions()
+  }
+}
+
 store.$subscribe((mutation, state) => {
   localStorage.setItem("state", JSON.stringify(state))
 })
@@ -117,13 +123,13 @@ store.$subscribe((mutation, state) => {
         <v-col>
           <v-row>
             <v-col>
-              <v-btn size="large" variant="tonal" block @click="setCreateOverlay">New</v-btn>
+              <v-btn size="large" variant="tonal" block @click="setCreateOverlay" color="primary">New</v-btn>
             </v-col>
             <v-col>
-              <v-btn size="large" variant="tonal" block @click="setRenameOverlay">Rename</v-btn>
+              <v-btn size="large" variant="tonal" block @click="setRenameOverlay" color="secondary">Rename</v-btn>
             </v-col>
             <v-col>
-              <v-btn size="large" variant="tonal" block @click="deleteScript">Delete</v-btn>
+              <v-btn size="large" variant="tonal" block @click="deleteScript" color="error">Delete</v-btn>
             </v-col>
             <v-col>
               <v-combobox label="Input Script" clearable variant="solo-filled"
@@ -133,7 +139,17 @@ store.$subscribe((mutation, state) => {
               </v-combobox>
             </v-col>
             <v-col>
-              <v-btn size="large" variant="tonal" block @click="executeScript">Execute</v-btn>
+              <v-btn-group>
+                <v-btn size="large" variant="tonal" @click="executeScript" color="primary">Execute</v-btn>
+                <v-menu>
+                  <template v-slot:activator="{ props }">
+                    <v-btn v-bind="props" size="large" variant="tonal" icon="mdi-dots-vertical" color="secondary"></v-btn>
+                  </template>
+                  <v-list @click:select="executionListSelect"
+                    :items="[{title: 'Clear Executions', value: 'clear'}]">
+                  </v-list>
+                </v-menu>
+              </v-btn-group>
             </v-col>
           </v-row>
         </v-col>
@@ -162,10 +178,10 @@ store.$subscribe((mutation, state) => {
               </v-row>
               <v-row justify="center">
                 <v-col class="flex-grow-0">
-                  <v-btn @click="closeOverlay" variant="tonal">Cancel</v-btn>
+                  <v-btn @click="closeOverlay" variant="tonal" color="error">Cancel</v-btn>
                 </v-col>
                 <v-col class="flex-grow-0">
-                  <v-btn color="info" type="submit" @click="finishNameOverlay">Finish</v-btn>
+                  <v-btn type="submit" @click="finishNameOverlay" variant="tonal" color="primary">Finish</v-btn>
                 </v-col>
               </v-row>
             </v-container>

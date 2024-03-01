@@ -72,6 +72,10 @@ export const useAppStore = defineStore('app', () => {
     garnishScript.free()
   }
 
+  function clearExecutions() {
+    executions.value = []
+  }
+
   function setInputScript(index: number | null) {
     inputScript.value = index
   }
@@ -90,6 +94,7 @@ export const useAppStore = defineStore('app', () => {
     renameScript,
     updateScript,
     executeScript,
+    clearExecutions,
     setCurrentScript,
     setInputScript
   }
