@@ -42,16 +42,22 @@ const rail = ref(false)
         <v-col>
           <v-row>
             <v-col>
-              <v-btn size="large" variant="tonal">New</v-btn>
+              <v-btn size="large" variant="tonal" block>New</v-btn>
             </v-col>
             <v-col>
-              <v-btn size="large" variant="tonal">Rename</v-btn>
+              <v-btn size="large" variant="tonal" block>Rename</v-btn>
             </v-col>
             <v-col>
-              <v-btn size="large" variant="tonal">Delete</v-btn>
+              <v-btn size="large" variant="tonal" block>Delete</v-btn>
             </v-col>
             <v-col>
-              <v-btn size="large" variant="tonal">Execute</v-btn>
+              <v-combobox label="Input Script" clearable variant="solo-filled"
+                          density="comfortable"
+                          :items="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']">
+              </v-combobox>
+            </v-col>
+            <v-col>
+              <v-btn size="large" variant="tonal" block>Execute</v-btn>
             </v-col>
           </v-row>
         </v-col>
