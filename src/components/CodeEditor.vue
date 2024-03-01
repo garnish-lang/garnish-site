@@ -19,7 +19,7 @@ function onInput(e: Event) {
 </script>
 
 <template>
-<textarea v-model="model" @input="onInput" @keydown="onKeyDown" placeholder="Script input here...">
+<textarea v-model="model" @input="onInput" @keydown="onKeyDown" placeholder="$ + 5...">
 </textarea>
 </template>
 
