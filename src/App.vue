@@ -26,7 +26,7 @@ const rail = ref(false)
     <v-footer app :height="750">
       <v-row>
         <v-col>
-          <v-btn block size="small" variant="text">
+          <v-btn block size="x-small" variant="text">
             <v-icon icon="mdi-arrow-split-horizontal"></v-icon>
           </v-btn>
         </v-col>
