@@ -13,16 +13,16 @@ const newScriptName = defineModel<string>()
 
 const showOverlay = computed(() => overlayTitle.value !== null)
 
-const namePattern = /^[a-zA-Z_][a-zA-Z0-9_]*$/;
+const namePattern = /^[a-zA-Z_][a-zA-Z0-9_]*$/
 const nameRules = [
-  (value: string) => namePattern.test(value) || "Names can only contain alphanumeric and underscore characters",
-  (value: string) => (store.scripts.find((script) => script.name === value) === undefined) || "Script name already taken"
+  (value: string) => namePattern.test(value) || 'Names can only contain alphanumeric and underscore characters',
+  (value: string) => (store.scripts.find((script) => script.name === value) === undefined) || 'Script name already taken'
 ]
 
 const inputScriptOptions = computed(() => {
   let items = []
 
-  for (let i = 0; i< store.scripts.length; i++) {
+  for (let i = 0; i < store.scripts.length; i++) {
     items.push({
       title: store.scripts[i].name,
       value: i
@@ -77,13 +77,13 @@ function executeScript() {
 }
 
 function executionListSelect(value) {
-  if (value.id === "clear") {
+  if (value.id === 'clear') {
     store.clearExecutions()
   }
 }
 
 store.$subscribe((mutation, state) => {
-  localStorage.setItem("state", JSON.stringify(state))
+  localStorage.setItem('state', JSON.stringify(state))
 })
 
 </script>
@@ -100,9 +100,7 @@ store.$subscribe((mutation, state) => {
       <v-list-item link title="Data Types" to="/data-types" prepend-icon="mdi-chart-arc"></v-list-item>
     </v-navigation-drawer>
     <v-main>
-      <v-container>
-        <RouterView />
-      </v-container>
+      <RouterView />
     </v-main>
     <v-footer app :height="750">
       <v-row>
@@ -143,10 +141,11 @@ store.$subscribe((mutation, state) => {
                 <v-btn size="large" variant="tonal" @click="executeScript" color="primary">Execute</v-btn>
                 <v-menu>
                   <template v-slot:activator="{ props }">
-                    <v-btn v-bind="props" size="large" variant="tonal" icon="mdi-dots-vertical" color="secondary"></v-btn>
+                    <v-btn v-bind="props" size="large" variant="tonal" icon="mdi-dots-vertical"
+                           color="secondary"></v-btn>
                   </template>
                   <v-list @click:select="executionListSelect"
-                    :items="[{title: 'Clear Executions', value: 'clear'}]">
+                          :items="[{title: 'Clear Executions', value: 'clear'}]">
                   </v-list>
                 </v-menu>
               </v-btn-group>
