@@ -4,16 +4,7 @@ import { ExecutionResult, AppScript } from '@/stores/types'
 
 export const useAppStore = defineStore('app', () => {
   const scripts = ref<AppScript[]>([
-    new AppScript("Script 1"),
-    new AppScript("Script 2"),
-    new AppScript("Script 3"),
-    new AppScript("Script 4"),
-    new AppScript("Script 5"),
-    new AppScript("Script 6"),
-    new AppScript("Script 7"),
-    new AppScript("Script 8"),
-    new AppScript("Script 9"),
-    new AppScript("Script 10"),
+    new AppScript("script_1"),
   ])
   const executions = ref<ExecutionResult[]>([
     new ExecutionResult("Script 1", "$ + 5", "10", "5"),

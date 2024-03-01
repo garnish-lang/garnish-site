@@ -7,8 +7,20 @@ import { useAppStore } from '@/stores/AppStore'
 
 const store = useAppStore()
 const rail = ref(false)
+const overlayTitle = ref<string | null>(null)
+
+const newScriptName = defineModel<string>()
+
+const showOverlay = computed(() => overlayTitle.value !== null)
+
+const namePattern = /^[a-zA-Z_][a-zA-Z0-9_]*$/;
+const nameRules = [
+  (value: string) => namePattern.test(value) ? true : "Names can only contain alphanumeric and underscore characters",
+  (value: string) => store.scripts.find((script) => script.name === value) === undefined ? true : "Script name already taken"
+]
+
 const inputScriptOptions = computed(() => {
-  let items = [];
+  let items = []
 
   for (let [i, script] of toRaw(store.scripts).entries()) {
     items.push({
@@ -31,6 +43,35 @@ function handleScriptSelection(item) {
 function deleteScript() {
   store.deleteScript(store.currentScript)
 }
+
+function closeOverlay() {
+  overlayTitle.value = null
+  newScriptName.value = ''
+}
+
+function finishNameOverlay() {
+  if (!newScriptName.value) {
+    closeOverlay()
+    return
+  }
+
+  if (overlayTitle.value === 'New Script') {
+    store.newScript(newScriptName.value)
+  } else {
+    store.renameScript(store.currentScript, newScriptName.value)
+  }
+
+  closeOverlay()
+}
+
+function setCreateOverlay() {
+  overlayTitle.value = 'New Script'
+}
+
+function setRenameOverlay() {
+  overlayTitle.value = `Renaming "${store.scripts[store.currentScript].name}"`
+}
+
 </script>
 
 <template>
@@ -68,10 +109,10 @@ function deleteScript() {
         <v-col>
           <v-row>
             <v-col>
-              <v-btn size="large" variant="tonal" block>New</v-btn>
+              <v-btn size="large" variant="tonal" block @click="setCreateOverlay">New</v-btn>
             </v-col>
             <v-col>
-              <v-btn size="large" variant="tonal" block>Rename</v-btn>
+              <v-btn size="large" variant="tonal" block @click="setRenameOverlay">Rename</v-btn>
             </v-col>
             <v-col>
               <v-btn size="large" variant="tonal" block @click.stop="deleteScript">Delete</v-btn>
@@ -97,6 +138,32 @@ function deleteScript() {
           <ResultsView />
         </v-col>
       </v-row>
+      <v-overlay v-model="showOverlay" class="align-center justify-center" contained @click:outside="closeOverlay">
+        <v-sheet class="overlay-main">
+          <v-form @submit.prevent="finishNameOverlay">
+            <v-container>
+              <v-row>
+                <v-col>
+                  <h4 class="text-h4 text-center">{{ overlayTitle }}</h4>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field autofocus v-model="newScriptName" placeholder="Name" :rules="nameRules"></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row justify="center">
+                <v-col class="flex-grow-0">
+                  <v-btn @click="closeOverlay" variant="tonal">Cancel</v-btn>
+                </v-col>
+                <v-col class="flex-grow-0">
+                  <v-btn color="info" type="submit" @click="finishNameOverlay">Finish</v-btn>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-form>
+        </v-sheet>
+      </v-overlay>
     </v-footer>
   </v-app>
 </template>
@@ -121,6 +188,10 @@ function deleteScript() {
 .scrollable {
   overflow-y: scroll;
   max-height: 100%;
+}
+
+.overlay-main {
+  width: 30vw;
 }
 
 </style>
