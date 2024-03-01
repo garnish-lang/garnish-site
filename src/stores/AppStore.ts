@@ -20,13 +20,18 @@ function getExecutionResult(script: GarnishScript): string {
 }
 
 export const useAppStore = defineStore('app', () => {
-  const scripts = ref<AppScript[]>([
-    new AppScript('script_1')
-  ])
-  const executions = ref<ExecutionResult[]>([
-  ])
-  const currentScript = ref<number>(0)
-  const inputScript = ref<number | null>(null)
+  const saved = JSON.parse(localStorage.getItem('state'))
+  console.log(saved)
+
+  const scripts = ref<AppScript[]>(saved?.scripts
+      ?.map((s) => Object.assign(new AppScript(''), s))
+    || [new AppScript('script_1')])
+  const executions = ref<ExecutionResult[]>(saved?.executions
+      ?.map((e) => Object.assign(new ExecutionResult('', '', '', ''), e))
+    || [])
+  const currentScript = ref<number>(saved?.currentScript || 0)
+  const inputScript = ref<number | null>(saved?.inputScript || null)
+  const executionsLimit = ref(100)
 
   function newScript(name: string) {
     scripts.value.push(new AppScript(name))
@@ -63,6 +68,9 @@ export const useAppStore = defineStore('app', () => {
     }
 
     executions.value.push(new ExecutionResult(script.name, script.script, getExecutionResult(garnishScript), input))
+    if (executions.value.length > executionsLimit.value) {
+      executions.value.splice(0, 1)
+    }
 
     garnishScript.free()
   }

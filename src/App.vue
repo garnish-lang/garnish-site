@@ -83,6 +83,11 @@ function executeScript() {
   store.executeScript(store.currentScript)
 }
 
+store.$subscribe((mutation, state) => {
+  console.log(JSON.stringify(state))
+  localStorage.setItem("state", JSON.stringify(state))
+})
+
 </script>
 
 <template>

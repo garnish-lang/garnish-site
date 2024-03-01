@@ -24,17 +24,14 @@ export class AppScript {
 }
 
 export class ExecutionResult {
-  static count = 0;
-
-  public readonly execution_no: number;
+  public readonly execution_no: string;
   public readonly script_name: string
   public readonly script: string
   public readonly result: string
   public readonly input_script: string | null
 
   public constructor(script_name: string, script: string, result: string, input_script: string | null = null) {
-    this.execution_no = ExecutionResult.count++;
-    console.log(this.execution_no)
+    this.execution_no = crypto.randomUUID()
     this.script_name = script_name
     this.script = script
     this.result = result
