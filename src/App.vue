@@ -29,7 +29,7 @@ function handleScriptSelection(item) {
 }
 
 function deleteScript() {
-
+  store.deleteScript(store.currentScript)
 }
 </script>
 
@@ -59,7 +59,7 @@ function deleteScript() {
       </v-row>
       <v-row>
         <v-col class="overflow-hidden">
-          <v-tabs show-arrows @update:model-value="handleScriptSelection">
+          <v-tabs show-arrows @update:model-value="handleScriptSelection" :model-value="store.currentScript">
             <v-tab v-for="[index, script] in store.scripts.entries()" :key="script.name" :value="index">
               {{ script.name }}
             </v-tab>
