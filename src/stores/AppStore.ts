@@ -42,6 +42,10 @@ export const useAppStore = defineStore('app', () => {
     scripts.value[index].name = name
   }
 
+  function updateScript(index: number, text: string) {
+    scripts.value[index].script = text
+  }
+
   function executeScript(index: number) {
     console.log('executing script ', scripts.value[index])
 
@@ -66,6 +70,7 @@ export const useAppStore = defineStore('app', () => {
     newScript,
     deleteScript,
     renameScript,
+    updateScript,
     executeScript,
     setCurrentScript,
     setInputScript,
