@@ -22,13 +22,6 @@ const nameRules = [
 const inputScriptOptions = computed(() => {
   let items = []
 
-  // for (let [i, script] of toRaw(store.scripts).entries()) {
-  //   items.push({
-  //     title: script.name,
-  //     value: i
-  //   })
-  // }
-
   for (let i = 0; i< store.scripts.length; i++) {
     items.push({
       title: store.scripts[i].name,
@@ -84,7 +77,6 @@ function executeScript() {
 }
 
 store.$subscribe((mutation, state) => {
-  console.log(JSON.stringify(state))
   localStorage.setItem("state", JSON.stringify(state))
 })
 

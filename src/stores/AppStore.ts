@@ -21,7 +21,6 @@ function getExecutionResult(script: GarnishScript): string {
 
 export const useAppStore = defineStore('app', () => {
   const saved = JSON.parse(localStorage.getItem('state'))
-  console.log(saved)
 
   const scripts = ref<AppScript[]>(saved?.scripts
       ?.map((s) => Object.assign(new AppScript(''), s))
@@ -59,10 +58,8 @@ export const useAppStore = defineStore('app', () => {
     let input = null
     let script = scripts.value[index]
     let garnishScript = new GarnishScript(script.name, script.script)
-    console.log('executing script ', script)
 
     if (inputScript.value !== null && scripts.value[inputScript.value]) {
-      console.log('with input ', scripts.value[inputScript.value])
       input = scripts.value[inputScript.value].script
       garnishScript.set_input(input)
     }
