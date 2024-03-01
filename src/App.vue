@@ -15,8 +15,8 @@ const showOverlay = computed(() => overlayTitle.value !== null)
 
 const namePattern = /^[a-zA-Z_][a-zA-Z0-9_]*$/;
 const nameRules = [
-  (value: string) => namePattern.test(value) ? true : "Names can only contain alphanumeric and underscore characters",
-  (value: string) => store.scripts.find((script) => script.name === value) === undefined ? true : "Script name already taken"
+  (value: string) => namePattern.test(value) || "Names can only contain alphanumeric and underscore characters",
+  (value: string) => (store.scripts.find((script) => script.name === value) === undefined) || "Script name already taken"
 ]
 
 const inputScriptOptions = computed(() => {
