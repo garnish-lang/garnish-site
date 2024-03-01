@@ -1,10 +1,36 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import { ref } from 'vue'
+import { computed, ref, toRaw, toRef, toValue } from 'vue'
 import CodeEditor from '@/components/CodeEditor.vue'
 import ResultsView from '@/components/ResultsView.vue'
+import { useAppStore } from '@/stores/AppStore'
 
+const store = useAppStore()
 const rail = ref(false)
+const inputScriptOptions = computed(() => {
+  let items = [];
+
+  for (let [i, script] of toRaw(store.scripts).entries()) {
+    items.push({
+      title: script.name,
+      value: i
+    })
+  }
+
+  return items
+})
+
+function handleInputSelection(item) {
+  store.setInputScript(item?.value || null)
+}
+
+function handleScriptSelection(item) {
+  store.setCurrentScript(item)
+}
+
+function deleteScript() {
+
+}
 </script>
 
 <template>
@@ -33,9 +59,9 @@ const rail = ref(false)
       </v-row>
       <v-row>
         <v-col class="overflow-hidden">
-          <v-tabs show-arrows>
-            <v-tab v-for="i in 10" :key="i" :value="'script' + i">
-              Script {{ i }}
+          <v-tabs show-arrows @update:model-value="handleScriptSelection">
+            <v-tab v-for="[index, script] in store.scripts.entries()" :key="script.name" :value="index">
+              {{ script.name }}
             </v-tab>
           </v-tabs>
         </v-col>
@@ -48,12 +74,13 @@ const rail = ref(false)
               <v-btn size="large" variant="tonal" block>Rename</v-btn>
             </v-col>
             <v-col>
-              <v-btn size="large" variant="tonal" block>Delete</v-btn>
+              <v-btn size="large" variant="tonal" block @click.stop="deleteScript">Delete</v-btn>
             </v-col>
             <v-col>
               <v-combobox label="Input Script" clearable variant="solo-filled"
                           density="comfortable"
-                          :items="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']">
+                          @update:model-value="handleInputSelection"
+                          :items="inputScriptOptions">
               </v-combobox>
             </v-col>
             <v-col>

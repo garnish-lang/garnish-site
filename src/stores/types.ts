@@ -24,13 +24,19 @@ export class AppScript {
 }
 
 export class ExecutionResult {
-  public readonly _script_name: string
-  public readonly _script: string
-  public readonly _result: string
+  static count = 0;
 
-  public constructor(script_name: string, script: string, result: string) {
-    this._script_name = script_name
-    this._script = script
-    this._result = result
+  public readonly execution_no: number;
+  public readonly script_name: string
+  public readonly script: string
+  public readonly result: string
+  public readonly input_script: string | null
+
+  public constructor(script_name: string, script: string, result: string, input_script: string | null = null) {
+    this.execution_no = ExecutionResult.count++;
+    this.script_name = script_name
+    this.script = script
+    this.result = result
+    this.input_script = input_script
   }
 }
