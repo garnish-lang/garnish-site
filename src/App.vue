@@ -74,6 +74,7 @@ const rail = ref(false)
   flex-direction: column;
   align-items: stretch;
   align-content: start;
+  padding: 1rem;
 }
 
 .v-footer > .v-row:nth-child(1), .v-footer > .v-row:nth-child(2) {
