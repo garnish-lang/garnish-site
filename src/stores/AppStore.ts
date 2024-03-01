@@ -1,22 +1,29 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { ExecutionResult, AppScript } from '@/stores/types'
+import { GarnishScript } from 'browser_garnish'
+
+function getExecutionResult(script: GarnishScript): string {
+  script.compile()
+  if (script.get_error()) {
+    return script.get_error()
+  }
+
+  script.execute()
+  if (script.get_error()) {
+    return script.get_error()
+  }
+
+  let result = script.get_execution_result(0)
+
+  return script.get_error() ? script.get_error() : result
+}
 
 export const useAppStore = defineStore('app', () => {
   const scripts = ref<AppScript[]>([
-    new AppScript("script_1"),
+    new AppScript('script_1')
   ])
   const executions = ref<ExecutionResult[]>([
-    new ExecutionResult("Script 1", "$ + 5", "10", "5"),
-    new ExecutionResult("Script 1", "$ + 5", "20", "15"),
-    new ExecutionResult("Script 1", "$ + 5", "30", "25"),
-    new ExecutionResult("Script 1", "$ + 5", "40", "35"),
-    new ExecutionResult("Script 1", "$ + 5", "50", "45"),
-    new ExecutionResult("Script 1", "$ + 5", "60", "55"),
-    new ExecutionResult("Script 1", "$ + 5", "70", "65"),
-    new ExecutionResult("Script 1", "$ + 5", "80", "75"),
-    new ExecutionResult("Script 1", "$ + 5", "90", "85"),
-    new ExecutionResult("Script 1", "$ + 5", "100", "95"),
   ])
   const currentScript = ref<number>(0)
   const inputScript = ref<number | null>(null)
@@ -28,10 +35,10 @@ export const useAppStore = defineStore('app', () => {
   function deleteScript(index: number) {
     scripts.value.splice(index, 1)
     if (scripts.value.length === 0) {
-      newScript("New Script")
+      newScript('New Script')
     }
     if (currentScript.value >= scripts.value.length) {
-      currentScript.value = scripts.value.length - 1;
+      currentScript.value = scripts.value.length - 1
     }
   }
 
@@ -44,11 +51,20 @@ export const useAppStore = defineStore('app', () => {
   }
 
   function executeScript(index: number) {
-    console.log('executing script ', scripts.value[index])
+    let input = null
+    let script = scripts.value[index]
+    let garnishScript = new GarnishScript(script.name, script.script)
+    console.log('executing script ', script)
 
-    if (inputScript.value !== null) {
+    if (inputScript.value !== null && scripts.value[inputScript.value]) {
       console.log('with input ', scripts.value[inputScript.value])
+      input = scripts.value[inputScript.value].script
+      garnishScript.set_input(input)
     }
+
+    executions.value.push(new ExecutionResult(script.name, script.script, getExecutionResult(garnishScript), input))
+
+    garnishScript.free()
   }
 
   function setInputScript(index: number | null) {
@@ -70,6 +86,6 @@ export const useAppStore = defineStore('app', () => {
     updateScript,
     executeScript,
     setCurrentScript,
-    setInputScript,
+    setInputScript
   }
 })

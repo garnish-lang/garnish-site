@@ -34,6 +34,7 @@ export class ExecutionResult {
 
   public constructor(script_name: string, script: string, result: string, input_script: string | null = null) {
     this.execution_no = ExecutionResult.count++;
+    console.log(this.execution_no)
     this.script_name = script_name
     this.script = script
     this.result = result

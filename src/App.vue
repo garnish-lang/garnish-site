@@ -22,9 +22,16 @@ const nameRules = [
 const inputScriptOptions = computed(() => {
   let items = []
 
-  for (let [i, script] of toRaw(store.scripts).entries()) {
+  // for (let [i, script] of toRaw(store.scripts).entries()) {
+  //   items.push({
+  //     title: script.name,
+  //     value: i
+  //   })
+  // }
+
+  for (let i = 0; i< store.scripts.length; i++) {
     items.push({
-      title: script.name,
+      title: store.scripts[i].name,
       value: i
     })
   }
@@ -72,6 +79,10 @@ function setRenameOverlay() {
   overlayTitle.value = `Renaming "${store.scripts[store.currentScript].name}"`
 }
 
+function executeScript() {
+  store.executeScript(store.currentScript)
+}
+
 </script>
 
 <template>
@@ -115,7 +126,7 @@ function setRenameOverlay() {
               <v-btn size="large" variant="tonal" block @click="setRenameOverlay">Rename</v-btn>
             </v-col>
             <v-col>
-              <v-btn size="large" variant="tonal" block @click.stop="deleteScript">Delete</v-btn>
+              <v-btn size="large" variant="tonal" block @click="deleteScript">Delete</v-btn>
             </v-col>
             <v-col>
               <v-combobox label="Input Script" clearable variant="solo-filled"
@@ -125,7 +136,7 @@ function setRenameOverlay() {
               </v-combobox>
             </v-col>
             <v-col>
-              <v-btn size="large" variant="tonal" block>Execute</v-btn>
+              <v-btn size="large" variant="tonal" block @click="executeScript">Execute</v-btn>
             </v-col>
           </v-row>
         </v-col>
