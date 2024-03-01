@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Welcome from '@/views/Welcome.vue'
-import DataTypes from '@/views/DataTypes.vue'
+import Welcome from '@/pages/Welcome.vue'
+import DataTypes from '@/pages/DataTypes.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
