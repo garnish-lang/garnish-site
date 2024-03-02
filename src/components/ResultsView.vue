@@ -27,6 +27,7 @@ const reversed = computed(() => {
                          :title="execution.result">
         <template v-slot:text>
           <v-code v-if="execution.input_script">{{ execution.input_script }}</v-code>
+          <v-code v-if="!execution.input_script">()</v-code>
           <v-code>{{ execution.script }}</v-code>
         </template>
       </v-expansion-panel>
