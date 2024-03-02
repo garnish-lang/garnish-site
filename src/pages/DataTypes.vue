@@ -4,8 +4,7 @@ import Page from '@/pages/Page.vue'
 </script>
 
 <template>
-  <Page>
-    <h1>Data Types</h1>
+  <Page title="Data Types">
   </Page>
 </template>
 

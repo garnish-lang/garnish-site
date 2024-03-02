@@ -4,8 +4,7 @@ import Page from '@/pages/Page.vue'
 </script>
 
 <template>
-  <Page>
-    <h1>Welcome to the Garnish Language</h1>
+  <Page title="Welcome to the Garnish Language">
   </Page>
 </template>
 
