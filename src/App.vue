@@ -91,12 +91,12 @@ store.$subscribe((mutation, state) => {
 <template>
   <v-app>
     <v-navigation-drawer :rail="rail" @click="rail = false">
-      <v-list-item title="Garnish Tutorial"
+      <v-list-item title="Garnish"
                    :prepend-icon="rail ? 'mdi-arrow-expand-right' : 'mdi-arrow-collapse-left'"
                    @click.stop="rail=!rail">
       </v-list-item>
       <v-divider></v-divider>
-      <v-list-item link title="Welcome" to="/" prepend-icon="mdi-home"></v-list-item>
+      <v-list-item link title="Introduction" to="/" prepend-icon="mdi-home"></v-list-item>
       <v-list-item link title="Data Types" to="/data-types" prepend-icon="mdi-chart-arc"></v-list-item>
     </v-navigation-drawer>
     <v-main>

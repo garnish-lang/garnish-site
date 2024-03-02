@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Welcome from '@/pages/Welcome.vue'
+import Introduction from '@/pages/Introduction.vue'
 import DataTypes from '@/pages/DataTypes.vue'
 
 const router = createRouter({
@@ -7,8 +7,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'welcome',
-      component: Welcome
+      name: 'introduction',
+      component: Introduction
     },
     {
       path: '/data-types',
