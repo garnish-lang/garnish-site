@@ -24,7 +24,7 @@ export const useAppStore = defineStore('app', () => {
 
   const scripts = ref<AppScript[]>(saved?.scripts
       ?.map((s) => Object.assign(new AppScript(''), s))
-    || [new AppScript('script_1')])
+    || [new AppScript('new_script')])
   const executions = ref<ExecutionResult[]>(saved?.executions
       ?.map((e) => Object.assign(new ExecutionResult('', '', '', ''), e))
     || [])
@@ -47,7 +47,7 @@ export const useAppStore = defineStore('app', () => {
 
     scripts.value.splice(index, 1)
     if (scripts.value.length === 0) {
-      newScript('New Script')
+      newScript('new_script')
     }
     if (currentScript.value >= scripts.value.length) {
       currentScript.value = scripts.value.length - 1
