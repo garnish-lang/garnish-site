@@ -42,7 +42,7 @@ function replaceScript() {
   <v-card rounded="0">
     <v-toolbar density="compact">
       <v-tabs>
-        <v-tab v-for="[index, script] in scripts.entries()" @click="selected = index">
+        <v-tab class="script-name" v-for="[index, script] in scripts.entries()" @click="selected = index">
           {{ script.name }}
         </v-tab>
       </v-tabs>

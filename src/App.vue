@@ -113,7 +113,10 @@ store.$subscribe((mutation, state) => {
       <v-row>
         <v-col class="overflow-hidden">
           <v-tabs show-arrows @update:model-value="handleScriptSelection" :model-value="store.currentScript">
-            <v-tab class="script-tab" v-for="[index, script] in store.scripts.entries()" :key="script.name" :value="index">
+            <v-tab class="script-tab script-name"
+                   v-for="[index, script] in store.scripts.entries()"
+                   :key="script.name"
+                   :value="index">
               {{ script.name }}
               <v-btn class="tab-close-btn"
                      @click.prevent.stop="deleteScript(index)"
@@ -132,10 +135,7 @@ store.$subscribe((mutation, state) => {
             <v-col>
               <v-btn size="large" variant="tonal" block @click="setRenameOverlay" color="secondary">Rename</v-btn>
             </v-col>
-<!--            <v-col>-->
-<!--              <v-btn size="large" variant="tonal" block @click="deleteScript" color="error">Delete</v-btn>-->
-<!--            </v-col>-->
-            <v-spacer/>
+            <v-spacer />
             <v-col>
               <v-combobox label="Input Script" clearable variant="solo-filled"
                           density="comfortable"
@@ -238,7 +238,6 @@ store.$subscribe((mutation, state) => {
 .script-tab .v-btn:hover {
   opacity: 1;
 }
-
 
 
 </style>
