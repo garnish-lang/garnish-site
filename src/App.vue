@@ -40,8 +40,8 @@ function handleScriptSelection(item) {
   store.setCurrentScript(item)
 }
 
-function deleteScript() {
-  store.deleteScript(store.currentScript)
+function deleteScript(index: number) {
+  store.deleteScript(index)
 }
 
 function closeOverlay() {
@@ -113,8 +113,14 @@ store.$subscribe((mutation, state) => {
       <v-row>
         <v-col class="overflow-hidden">
           <v-tabs show-arrows @update:model-value="handleScriptSelection" :model-value="store.currentScript">
-            <v-tab v-for="[index, script] in store.scripts.entries()" :key="script.name" :value="index">
+            <v-tab class="script-tab" v-for="[index, script] in store.scripts.entries()" :key="script.name" :value="index">
               {{ script.name }}
+              <v-btn class="tab-close-btn"
+                     @click.prevent.stop="deleteScript(index)"
+                     icon="mdi-close-circle"
+                     size="small"
+                     elevation="0"
+                     density="compact"></v-btn>
             </v-tab>
           </v-tabs>
         </v-col>
@@ -126,9 +132,10 @@ store.$subscribe((mutation, state) => {
             <v-col>
               <v-btn size="large" variant="tonal" block @click="setRenameOverlay" color="secondary">Rename</v-btn>
             </v-col>
-            <v-col>
-              <v-btn size="large" variant="tonal" block @click="deleteScript" color="error">Delete</v-btn>
-            </v-col>
+<!--            <v-col>-->
+<!--              <v-btn size="large" variant="tonal" block @click="deleteScript" color="error">Delete</v-btn>-->
+<!--            </v-col>-->
+            <v-spacer/>
             <v-col>
               <v-combobox label="Input Script" clearable variant="solo-filled"
                           density="comfortable"
@@ -217,5 +224,21 @@ store.$subscribe((mutation, state) => {
 .overlay-main {
   width: 30vw;
 }
+
+.script-tab .v-btn {
+  margin-left: 1rem;
+  opacity: .1;
+  transition: opacity .5s;
+}
+
+.script-tab:hover .v-btn {
+  opacity: .25;
+}
+
+.script-tab .v-btn:hover {
+  opacity: 1;
+}
+
+
 
 </style>
