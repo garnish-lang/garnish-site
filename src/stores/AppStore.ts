@@ -32,8 +32,12 @@ export const useAppStore = defineStore('app', () => {
   const inputScript = ref<number | null>(saved?.inputScript || null)
   const executionsLimit = ref(100)
 
-  function newScript(name: string) {
-    scripts.value.push(new AppScript(name))
+  function newScript(name: string, text: string | null = null) {
+    let s = new AppScript(name)
+    if (text !== null) {
+      s.script = text
+    }
+    scripts.value.push(s)
   }
 
   function deleteScript(index: number) {
@@ -55,21 +59,26 @@ export const useAppStore = defineStore('app', () => {
   }
 
   function executeScript(index: number) {
-    let input = null
     let script = scripts.value[index]
-    let garnishScript = new GarnishScript(script.name, script.script)
+    executeDefinedScript(
+      script as AppScript,
+      inputScript.value !== null ? scripts.value[inputScript.value] as AppScript : null
+    )
+  }
 
-    if (inputScript.value !== null && scripts.value[inputScript.value]) {
-      input = scripts.value[inputScript.value].script
-      garnishScript.set_input(input)
+  function executeDefinedScript(script: AppScript, input: AppScript | null = null) {
+    let garnishScript = new GarnishScript(script.name, script.script)
+    if (input !== null) {
+      garnishScript.set_input(input.script)
     }
 
-    executions.value.push(new ExecutionResult(script.name, script.script, getExecutionResult(garnishScript), input))
+    executions.value.push(new ExecutionResult(script.name, script.script, getExecutionResult(garnishScript), input?.script || null))
     if (executions.value.length > executionsLimit.value) {
       executions.value.splice(0, 1)
     }
 
     garnishScript.free()
+
   }
 
   function clearExecutions() {
@@ -94,6 +103,7 @@ export const useAppStore = defineStore('app', () => {
     renameScript,
     updateScript,
     executeScript,
+    executeDefinedScript,
     clearExecutions,
     setCurrentScript,
     setInputScript

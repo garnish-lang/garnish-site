@@ -2,6 +2,12 @@ export class AppScript {
   private _name: string = ''
   private _script: string = ''
 
+  public static make(name: string, script: string): AppScript {
+    let s = new AppScript(name)
+    s.script = script
+    return s
+  }
+
   public constructor(name) {
     this._name = name
   }

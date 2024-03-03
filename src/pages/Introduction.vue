@@ -1,6 +1,13 @@
 <script setup lang="ts">
 
 import Page from '@/pages/Page.vue'
+import ScriptExample from '@/components/ScriptExample.vue'
+import { AppScript } from '@/stores/types'
+
+const scripts = [
+  AppScript.make("add_5", "$ + 5"),
+  AppScript.make("input", "10"),
+]
 </script>
 
 <template>
@@ -28,10 +35,11 @@ import Page from '@/pages/Page.vue'
       Below the command buttons is where execution outputs are displayed. The most recent output will be on top.
       Clicking on an output will show the input (top) and script (bottom) that were executed to give that output.
     </p>
-    <h3>Example Displays</h3>
+    <h3>Examples</h3>
     <p>
       Throughout this tutorial, there will be examples such as this one for you to reference and interact with.
     </p>
+    <ScriptExample :scripts="scripts"></ScriptExample>
   </Page>
 </template>
 
