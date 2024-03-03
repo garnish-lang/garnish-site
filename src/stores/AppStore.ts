@@ -41,6 +41,10 @@ export const useAppStore = defineStore('app', () => {
   }
 
   function deleteScript(index: number) {
+    if (index === inputScript.value) {
+      inputScript.value = null;
+    }
+
     scripts.value.splice(index, 1)
     if (scripts.value.length === 0) {
       newScript('New Script')
