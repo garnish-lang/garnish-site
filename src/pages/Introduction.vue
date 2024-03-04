@@ -46,7 +46,7 @@ const scripts = [
       <template v-slot:left>
         <h3>Editor</h3>
         <p>
-          At the bottom of the screen there is an area for trying out what you learn throughout this tutorial.
+          At the bottom of the screen, there is an area for trying out what you learn throughout this tutorial.
           On the left is a script editor with a list of available scripts above.
           Click on the name of the script to make it active for editing.
           Click on the 'x' icon next to the name to delete the script.
@@ -86,10 +86,10 @@ const scripts = [
     </PageSection>
     <PageSection>
       <template v-slot:left>
-        <h3>Examples</h3>
+        <h3>Example Blocks</h3>
         <p>
           Throughout this tutorial, there will be code examples such as this <code class="v-code">add_5</code> and <code
-          class="v-code">input</code> example.
+          class="v-code">input</code> example block.
           These examples contain one or more scripts you can view by clicking on the name to select it.
           The actions in the top-right do the following:
         </p>
@@ -97,12 +97,12 @@ const scripts = [
           <dd>
             <v-icon :icon="ReplaceFileIcon"></v-icon>
             - Replaces the text of your selected script in the editor at the bottom of the screen with the selected
-            example's text.
+            example script's text.
           </dd>
           <dd>
             <v-icon :icon="CopyCreateFileIcon"></v-icon>
-            - Creates a new script in your editor with same name and text as the selected example. Disabled if script
-            already in your editor with example name.
+            - Creates a new script in your editor with same name and text as the selected example script. Disabled if a
+            script in your editor already as the same name as selected example script's name.
           </dd>
           <dd>
             <v-icon :icon="ExecuteUserInputIcon"></v-icon>
@@ -110,8 +110,8 @@ const scripts = [
           </dd>
           <dd>
             <v-icon :icon="ExecuteIcon"></v-icon>
-            - Executes the selected example script. If there is an example in the same block named "input", it is used
-            as the selected scripts input.
+            - Executes the selected example script. If there is an example script in the same block named "input", it is
+            used as the example script's input.
           </dd>
         </dl>
       </template>
