@@ -137,7 +137,7 @@ store.$subscribe((mutation, state) => {
             </v-col>
             <v-spacer />
             <v-col>
-              <v-combobox label="Input Script" clearable variant="solo-filled"
+              <v-combobox label="Input" clearable variant="solo-filled"
                           density="comfortable"
                           :model-value="store.inputScript"
                           @update:model-value="handleInputSelection"

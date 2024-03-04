@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<{
 <template>
 <v-container>
   <v-sheet>
-    <v-container>
+    <v-container class="page">
       <slot name="title">
         <h1>{{ props.title }}</h1>
       </slot>
@@ -19,6 +19,36 @@ const props = withDefaults(defineProps<{
 </v-container>
 </template>
 
-<style scoped>
+<style>
+.page h1 {
+  margin-bottom: .5rem;
+}
 
+.page h2 {
+  margin-bottom: 0;
+}
+
+.page h3 {
+  margin-bottom: .25rem;
+}
+
+p {
+  margin-bottom: .5rem;
+}
+
+p > code {
+  display: inline;
+}
+
+dl {
+  margin: 1rem 0 1rem 2rem;
+}
+
+dd {
+  margin-bottom: .5rem;
+}
+
+dd > .definition-word {
+  font-weight: bold;
+}
 </style>
