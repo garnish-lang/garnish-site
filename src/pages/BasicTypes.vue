@@ -142,9 +142,10 @@ const typeExamples = [
         <h3>Identifiers & Symbols</h3>
         <p>
           Identifiers are names that the writer defines to represent values.
-          They can contain any alphanumeric characters, the underscore and colon characters, but cannot start with a
-          number.
-          These are resolved by the application executing script and a few are provided here for illustration.
+          They can contain any alphanumeric characters, the underscore and colon characters,
+          but cannot start with a number.
+          Identifiers are resolved during access operations and can be resolved by the application executing script.
+          A few identifiers have been implemented as examples.
         </p>
         <p>
           Symbols are numeric representations of identifiers so identifiers can be used in comparisons and making lists.
