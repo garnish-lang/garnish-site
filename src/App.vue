@@ -97,7 +97,16 @@ store.$subscribe((mutation, state) => {
       </v-list-item>
       <v-divider></v-divider>
       <v-list-item link title="Introduction" to="/" prepend-icon="mdi-home"></v-list-item>
-      <v-list-item link title="Data Types" to="/data-types" prepend-icon="mdi-chart-arc"></v-list-item>
+      <v-list-item link title="Primer" to="/primer" prepend-icon="mdi-alpha"></v-list-item>
+      <v-list-item link title="Basic Types" to="/basic-types" prepend-icon="mdi-chart-arc"></v-list-item>
+      <v-list-item link title="Container Types" to="/container-types" prepend-icon="mdi-package-variant-closed"></v-list-item>
+      <v-list-item link title="Math" to="/math-ops" prepend-icon="mdi-plus-minus-variant"></v-list-item>
+      <v-list-item link title="Comparisons" to="/comparisons" prepend-icon="mdi-greater-than-or-equal"></v-list-item>
+      <v-list-item link title="Logic" to="/logic" prepend-icon="mdi-ampersand"></v-list-item>
+      <v-list-item link title="Conditionals" to="/conditionals" prepend-icon="mdi-progress-question"></v-list-item>
+      <v-list-item link title="Bitwise" to="/bitwise" prepend-icon="mdi-numeric-10"></v-list-item>
+      <v-list-item link title="Expressions" to="/expressions" prepend-icon="mdi-code-braces"></v-list-item>
+      <v-list-item link title="Side Effects" to="/side-effects" prepend-icon="mdi-code-brackets"></v-list-item>
     </v-navigation-drawer>
     <v-main>
       <RouterView />
