@@ -117,7 +117,7 @@ const typeExamples = [
         <p>
           Data is often represented as bytes and these two types are available to process that data. Generally, values
           of this type will be provided but should you need to define it in script, wrapping text in single quotes
-          <code class="v-code">.</code>. The characters will be converted to the byte value.
+          <code class="v-code">'</code>. The characters will be converted to the byte value.
         </p>
         <p>
           Any number of single quotes may surround the text so long as the count at end and beginning match.
