@@ -28,7 +28,7 @@ const byteExamples = [
 ]
 
 const symbolsExamples = [
-  AppScript.make('identifiers', 'Math::PI MATH::IntegerMax MATH::FloatMax'),
+  AppScript.make('identifiers', 'Math::PI Math::IntegerMax Math::FloatMax'),
   AppScript.make('symbols', ';my_symbol ;another_symbol')
 ]
 
