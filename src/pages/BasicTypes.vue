@@ -49,7 +49,7 @@ const typeExamples = [
     </PageSection>
     <PageSection>
       <template v-slot:left>
-        <h3>Unit, True & False</h3>
+        <h2>Unit, True & False</h2>
         <p>
           These three types are the only single value types in the Garnish language.
         </p>
@@ -72,7 +72,7 @@ const typeExamples = [
     </PageSection>
     <PageSection>
       <template v-slot:left>
-        <h3>Numbers</h3>
+        <h2>Numbers</h2>
         <p>
           Type for all numeric values. This includes what integers and floating point values.
         </p>
@@ -89,7 +89,7 @@ const typeExamples = [
     </PageSection>
     <PageSection>
       <template v-slot:left>
-        <h3>Characters & Character Lists</h3>
+        <h2>Characters & Character Lists</h2>
         <p>
           Called "strings" in some other languages, these two types hold textual data. Created by putting any number of
           text
@@ -113,7 +113,7 @@ const typeExamples = [
     </PageSection>
     <PageSection>
       <template v-slot:left>
-        <h3>Bytes & Bytes Lists</h3>
+        <h2>Bytes & Bytes Lists</h2>
         <p>
           Data is often represented as bytes and these two types are available to process that data. Generally, values
           of this type will be provided but should you need to define it in script, wrapping text in single quotes
@@ -139,7 +139,7 @@ const typeExamples = [
     </PageSection>
     <PageSection>
       <template v-slot:left>
-        <h3>Identifiers & Symbols</h3>
+        <h2>Identifiers & Symbols</h2>
         <p>
           Identifiers are names that the writer defines to represent values.
           They can contain any alphanumeric characters, the underscore and colon characters,
@@ -162,7 +162,7 @@ const typeExamples = [
     </PageSection>
     <PageSection>
       <template v-slot:left>
-        <h3>Type</h3>
+        <h2>Type</h2>
         <p>
           The type of a value also has its own type. Can be used for type comparisons and assertions.
           To get the type of a value, use the type of operator <code class="v-code">#</code> preceding the value.
