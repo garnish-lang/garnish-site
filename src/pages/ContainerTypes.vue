@@ -29,7 +29,7 @@ const sliceExamples = [
   <Page title="Container Types">
     <PageSection>
       <template v-slot:left>
-        <h3>Ranges</h3>
+        <h2>Ranges</h2>
       </template>
       <template v-slot:right>
         <ScriptExample :scripts="rangeExamples" />
@@ -37,7 +37,7 @@ const sliceExamples = [
     </PageSection>
     <PageSection>
       <template v-slot:left>
-        <h3>Pairs</h3>
+        <h2>Pairs</h2>
       </template>
       <template v-slot:right>
         <ScriptExample :scripts="pairExamples" />
@@ -45,7 +45,7 @@ const sliceExamples = [
     </PageSection>
     <PageSection>
       <template v-slot:left>
-        <h3>Lists</h3>
+        <h2>Lists</h2>
       </template>
       <template v-slot:right>
         <ScriptExample :scripts="listExamples" />
@@ -53,7 +53,7 @@ const sliceExamples = [
     </PageSection>
     <PageSection>
       <template v-slot:left>
-        <h3>Concatenations</h3>
+        <h2>Concatenations</h2>
       </template>
       <template v-slot:right>
         <ScriptExample :scripts="concatenationExamples" />
@@ -61,7 +61,7 @@ const sliceExamples = [
     </PageSection>
     <PageSection>
       <template v-slot:left>
-        <h3>Slices</h3>
+        <h2>Slices</h2>
       </template>
       <template v-slot:right>
         <ScriptExample :scripts="sliceExamples" />
