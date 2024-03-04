@@ -31,6 +31,10 @@ const symbolsExamples = [
   AppScript.make('identifiers', 'Math::PI MATH::IntegerMax MATH::FloatMax'),
   AppScript.make('symbols', ';my_symbol ;another_symbol')
 ]
+
+const typeExamples = [
+  AppScript.make('types', '#"some text" #100 #()'),
+]
 </script>
 
 <template>
@@ -153,6 +157,18 @@ const symbolsExamples = [
       </template>
       <template v-slot:right>
         <ScriptExample :scripts="symbolsExamples" />
+      </template>
+    </PageSection>
+    <PageSection>
+      <template v-slot:left>
+        <h3>Type</h3>
+        <p>
+          The type of a value also has its own type. Can be used for type comparisons and assertions.
+          To get the type of a value, use the type of operator <code class="v-code">#</code> preceding the value.
+        </p>
+      </template>
+      <template v-slot:right>
+        <ScriptExample :scripts="typeExamples" />
       </template>
     </PageSection>
   </Page>
