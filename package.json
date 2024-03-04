@@ -12,7 +12,7 @@
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "clean-install": "rm -f node_modules && npm install"
+    "clean-install": "rm -r node_modules && npm install"
   },
   "dependencies": {
     "browser_garnish": "file:../browser-garnish/pkg",

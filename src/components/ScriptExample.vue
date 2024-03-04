@@ -64,5 +64,6 @@ function replaceScript() {
   font-size: 1rem;
   padding: 1rem;
   white-space: pre;
+  font-family: monospace;
 }
 </style>
