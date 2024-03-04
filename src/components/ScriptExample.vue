@@ -15,7 +15,7 @@ const selected = ref(0)
 
 const scripts = computed(() => props.scripts || [])
 const selectedCode = computed(() => scripts.value[selected.value]?.script || '')
-const selectedNameExists = computed(() => !!store.scripts.find((s) => s.name === scripts.value[selected.value].name))
+const selectedNameExists = computed(() => !!store.scripts.find((s) => s.name === scripts.value[selected.value]?.name))
 
 function execute() {
   let input = scripts.value.find((s) => s.name === "input") || null
@@ -39,7 +39,7 @@ function replaceScript() {
 </script>
 
 <template>
-  <v-card rounded="0">
+  <v-card rounded="0" class="fill-height">
     <v-toolbar density="compact">
       <v-tabs>
         <v-tab class="script-name" v-for="[index, script] in scripts.entries()" @click="selected = index">
@@ -52,7 +52,7 @@ function replaceScript() {
       <ExampleAction tooltip="Execute with User Input" :icon="ExecuteUserInputIcon" @click="executeWithUserInput" />
       <ExampleAction tooltip="Execute with Example Input" :icon="ExecuteIcon" @click="execute" />
     </v-toolbar>
-    <v-code>
+    <v-code class="fill-height">
       {{ selectedCode }}
     </v-code>
   </v-card>
@@ -63,5 +63,6 @@ function replaceScript() {
   border-radius: 0;
   font-size: 1rem;
   padding: 1rem;
+  white-space: pre;
 }
 </style>
