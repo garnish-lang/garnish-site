@@ -20,7 +20,7 @@ const listExamples = [
   AppScript.make('list', '10 20 30 40 50'),
   AppScript.make('list_of_lists', '10 20 30, 40 50 60, 70 80 90'),
   AppScript.make('list_access', '10 20 30, 40 50 60, 70 80 90\n\n$.1.2'),
-  AppScript.make('associations', ';key = "value" ;data = 12345\n\n$.data'),
+  AppScript.make('associations', ';key = "value" ;data = 12345\n\n$.data key'),
 ]
 
 const concatenationExamples = [
@@ -112,6 +112,10 @@ const sliceExamples = [
           If an item in a list is a Pair with a Symbol on the left side, it is considered an associated value.
           This associated value may be accessed with the access operator <code class="v-code">.</code> followed
           by (no space) an identifier matching the symbol's identifier.
+        </p>
+        <p>
+          Additionally, if a list is the current value, you may omit the value symbol and access operator.
+          The identifier will be resolved, by checking the current value for a symbol matching the identifier.
         </p>
       </template>
       <template v-slot:right>
