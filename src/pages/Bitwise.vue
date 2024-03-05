@@ -6,12 +6,12 @@ import ScriptExample from '@/components/ScriptExample.vue'
 import { AppScript } from '@/stores/types'
 
 const examples = [
-  AppScript.make("shift_left", "$ << 4"),
-  AppScript.make("shift_right", "$ >> 4"),
-  AppScript.make("and", "$ & 260"),
-  AppScript.make("or", "$ | 4"),
-  AppScript.make("xor", "$ ^ 260"),
-  AppScript.make("input", "256"),
+  AppScript.make('shift_left', '$ << 4'),
+  AppScript.make('shift_right', '$ >> 4'),
+  AppScript.make('and', '$ & 260'),
+  AppScript.make('or', '$ | 4'),
+  AppScript.make('xor', '$ ^ 260'),
+  AppScript.make('input', '256')
 ]
 </script>
 

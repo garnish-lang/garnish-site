@@ -6,25 +6,25 @@ import ScriptExample from '@/components/ScriptExample.vue'
 import { AppScript } from '@/stores/types'
 
 const commonExamples = [
-  AppScript.make("add", "$.0 + 5\n$.1 + 5\n$.2 + 5"),
-  AppScript.make("subtract", "$.0 - 5\n$.1 - 5\n$.2 - 5"),
-  AppScript.make("multiply", "$.0 * 5\n$.1 * 5\n$.2 * 5"),
-  AppScript.make("divide", "$.0 / 5\n$.1 / 5\n$.2 / 5"),
-  AppScript.make("remainder", "$.0 % 5\n$.1 % 5\n$.2 % 5"),
-  AppScript.make("input", "8 --8 3.14"),
+  AppScript.make('add', '$.0 + 5\n$.1 + 5\n$.2 + 5'),
+  AppScript.make('subtract', '$.0 - 5\n$.1 - 5\n$.2 - 5'),
+  AppScript.make('multiply', '$.0 * 5\n$.1 * 5\n$.2 * 5'),
+  AppScript.make('divide', '$.0 / 5\n$.1 / 5\n$.2 / 5'),
+  AppScript.make('remainder', '$.0 % 5\n$.1 % 5\n$.2 % 5'),
+  AppScript.make('input', '8 --8 3.14')
 ]
 
 const additionalExamples = [
-  AppScript.make("absolute_value", "++$.0\n++$.1\n++$.2"),
-  AppScript.make("negation", "--$.0\n--$.1\n--$.2"),
-  AppScript.make("exponential", "$.0 * 5\n$.1 ** 5\n$.2 ** 5"),
-  AppScript.make("integer_divide", "$.0 // 5\n$.1 // 5\n$.2 // 5"),
-  AppScript.make("input", "8 --8 3.14"),
+  AppScript.make('absolute_value', '++$.0\n++$.1\n++$.2'),
+  AppScript.make('negation', '--$.0\n--$.1\n--$.2'),
+  AppScript.make('exponential', '$.0 * 5\n$.1 ** 5\n$.2 ** 5'),
+  AppScript.make('integer_divide', '$.0 // 5\n$.1 // 5\n$.2 // 5'),
+  AppScript.make('input', '8 --8 3.14')
 ]
 
 const groupingExamples = [
-  AppScript.make("absolute_value", "++$ ** 3 / ((12 - 7) + --5.5 * 4.6) // 2 % 5"),
-  AppScript.make("input", "--8"),
+  AppScript.make('absolute_value', '++$ ** 3 / ((12 - 7) + --5.5 * 4.6) // 2 % 5'),
+  AppScript.make('input', '--8')
 ]
 </script>
 
@@ -34,7 +34,8 @@ const groupingExamples = [
       <template v-slot:left>
         <h2>Common Operations</h2>
         <p>
-          Garnish supports the four most common math operations for programming, addition, subtraction, multiplication and division
+          Garnish supports the four most common math operations for programming, addition, subtraction, multiplication
+          and division
           along with the remainder operation.
         </p>
         <dl>
@@ -53,7 +54,8 @@ const groupingExamples = [
       <template v-slot:left>
         <h2>Additional Operations</h2>
         <p>
-          <span class="definition-word">Absolute Value</span> with the unary <code class="v-code">++</code> operator. Gives the positive value of a given number.
+          <span class="definition-word">Absolute Value</span> with the unary <code class="v-code">++</code> operator.
+          Gives the positive value of a given number.
         </p>
         <p>
           <span class="definition-word">Negation</span> with the unary <code class="v-code">--</code> operator.

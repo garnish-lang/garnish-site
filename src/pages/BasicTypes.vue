@@ -33,7 +33,7 @@ const symbolsExamples = [
 ]
 
 const typeExamples = [
-  AppScript.make('types', '#"some text" #100 #()'),
+  AppScript.make('types', '#"some text" #100 #()')
 ]
 </script>
 

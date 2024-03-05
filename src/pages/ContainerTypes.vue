@@ -21,12 +21,12 @@ const listExamples = [
   AppScript.make('list_across_lines', '10 20 30\n40 50 60\n70 80 90'),
   AppScript.make('list_of_lists', '10 20 30, 40 50 60, 70 80 90'),
   AppScript.make('list_access', '10 20 30, 40 50 60, 70 80 90\n\n$.1.2'),
-  AppScript.make('associations', ';key = "value" ;data = 12345\n\n$.data key'),
+  AppScript.make('associations', ';key = "value" ;data = 12345\n\n$.data key')
 ]
 
 const concatenationExamples = [
   AppScript.make('concatenation', '"some text" <> 123 <> ()\n\n$.2 $.1 $.0'),
-  AppScript.make('list_concatenation', '10 20 30 <> 40 50 60\n\n$.1 $.5'),
+  AppScript.make('list_concatenation', '10 20 30 <> 40 50 60\n\n$.1 $.5')
 ]
 
 const sliceExamples = [
@@ -95,7 +95,8 @@ const sliceExamples = [
         <h2>Lists</h2>
         <p>
           Groups any number of items together.
-          Lists are made by either separating values with whitespace (spaces or single newlines) or commas <code class="v-code">,</code>.
+          Lists are made by either separating values with whitespace (spaces or single newlines) or commas <code
+          class="v-code">,</code>.
           Mixing the two methods will result in a list of lists.
         </p>
         <p>Supports all internal operators</p>
