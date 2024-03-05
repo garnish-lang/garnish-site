@@ -48,7 +48,7 @@ dd {
   margin-bottom: .5rem;
 }
 
-dd > .definition-word {
+.definition-word {
   font-weight: bold;
 }
 </style>
