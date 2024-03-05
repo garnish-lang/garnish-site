@@ -21,6 +21,10 @@ const examples = [
           Like the comparison operators, they can never result in a Unit value,
           making them perfect for removing the possibility of Unit values from your script where you don't want them.
         </p>
+        <p>
+          The operands do not have to be True or False values. The types False and Unit will both considered False.
+          All other values will considered True.
+        </p>
         <dl>
           <dd><code class="v-code">??</code> - TIS</dd>
           <dd><code class="v-code">!!</code> - NOT</dd>
