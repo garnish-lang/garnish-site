@@ -19,7 +19,7 @@ const examples = [
       <template v-slot:left>
         <p>
           These operations compare two values together and will always result in either a True or False value.
-          This also means that they are the only operations that can never result in a Unit value,
+          This also means that they can never result in a Unit value,
           making them perfect for removing the possibility of Unit values from your script where you don't want them.
         </p>
         <dl>
