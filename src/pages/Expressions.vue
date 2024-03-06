@@ -13,10 +13,14 @@ const nestedExamples = [
 const applyExamples = [
   AppScript.make('apply', '{ $ + 5 } ~ 10'),
   AppScript.make('apply_into', '10 ~> { $ + 5 }'),
-  AppScript.make('apply_empty', '{ $ + 5 }~~'),
+  AppScript.make('apply_empty', '{ $ + 5 }~~')
 ]
 
-const reapplyExamples = []
+const reapplyExamples = [
+  AppScript.make('reapply', '$ <= 100 ^~ $ + 13'),
+  AppScript.make('infinite', '$? ^~ $ + 5'),
+  AppScript.make('input', '5')
+]
 </script>
 
 <template>
@@ -72,6 +76,10 @@ const reapplyExamples = []
         </p>
         <p>
           If the right side evaluates to False, execution of current expression continues as normal.
+        </p>
+        <p>
+          Note: To prevent infinite loops, this site has a limit on how many instructions can be run in a single execution, set to 10000.
+          Run the "infinite" example to see the error.
         </p>
       </template>
       <template v-slot:right>
