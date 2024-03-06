@@ -10,6 +10,7 @@ import Conditionals from '@/pages/Conditionals.vue'
 import Bitwise from '@/pages/Bitwise.vue'
 import Expressions from '@/pages/Expressions.vue'
 import SideEffects from '@/pages/SideEffects.vue'
+import Annotations from '@/pages/Annotations.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -68,6 +69,11 @@ const router = createRouter({
       path: '/side-effects',
       name: 'sideEffects',
       component: SideEffects
+    },
+    {
+      path: '/annotations',
+      name: 'annotations',
+      component: Annotations
     }
   ]
 })
