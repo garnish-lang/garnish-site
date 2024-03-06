@@ -37,6 +37,10 @@ const reversed = computed(() => {
 
 <style scoped>
 
+.v-expansion-panel {
+  overflow: hidden;
+}
+
 .v-code:first-child {
   margin-bottom: .5rem;
 }
