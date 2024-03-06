@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<{
 }
 
 .page h2 {
-  margin-bottom: 0;
+  margin-bottom: .5rem;
 }
 
 .page h3 {

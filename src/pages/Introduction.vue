@@ -17,10 +17,6 @@ const scripts = [
     <PageSection>
       <template v-slot:left>
         <h2>What is it?</h2>
-      </template>
-    </PageSection>
-    <PageSection>
-      <template v-slot:left>
         <p>
           Garnish is a functional scripting language with immutable data and input/output workflow.
           Each script receives a single input and results in a single output.
@@ -40,10 +36,6 @@ const scripts = [
     <PageSection>
       <template v-slot:left>
         <h2>Script Tools</h2>
-      </template>
-    </PageSection>
-    <PageSection>
-      <template v-slot:left>
         <h3>Editor</h3>
         <p>
           At the bottom of the screen, there is an area for trying out what you learn throughout this tutorial.

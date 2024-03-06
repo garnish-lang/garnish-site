@@ -21,10 +21,6 @@ const subexpressionScripts = [
     <PageSection>
       <template v-slot:left>
         <h2>Input & Value</h2>
-      </template>
-    </PageSection>
-    <PageSection>
-      <template v-slot:left>
         <p>
           Every script has an input and a current value. When executed, the current value is set to the input.
         </p>
@@ -39,10 +35,6 @@ const subexpressionScripts = [
     <PageSection>
       <template v-slot:left>
         <h2>Subexpressions</h2>
-      </template>
-    </PageSection>
-    <PageSection>
-      <template v-slot:left>
         <p>
           Another name for a script is an "expression".
           Named for how other programming and scripting languages refer to code that produces a single value.
