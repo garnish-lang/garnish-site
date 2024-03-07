@@ -96,8 +96,13 @@ const typeExamples = [
           between double quote marks <code class="v-code">"</code>.
         </p>
         <p>
-          Any number of double quotes may surround the text so long as the count at end and beginning match.
-          This allows an application to implement custom formatting at build time instead of defining it else where.
+          Character lists can either be surround by a single pair of double quotes or three or more pairs of double quotes.
+          Two pairs of double quotes isn't allowed because
+          two double quotes appearing next to each other is an empty character list.
+        </p>
+        <p>
+          Supporting multiple pairs of quotes allows an application to implement custom formatting at build time
+          instead of runtime.
         </p>
         <p>
           Note the double quotes in the output are visual only and are not included in the value.
@@ -120,9 +125,13 @@ const typeExamples = [
           <code class="v-code">'</code>. The characters will be converted to the byte value.
         </p>
         <p>
-          Any number of single quotes may surround the text so long as the count at end and beginning match.
-          This allows an application to implement custom formatting at build time instead of defining it else where.
-          An example of this is implemented for this site. When using two or more single quote pairs,
+          Byte lists can either be surround by a single pair of quotes or three or more pairs of quotes.
+          Two pairs of quotes isn't allowed because two quotes appearing next to each other is an empty byte list.
+        </p>
+        <p>
+          Supporting multiple pairs of double quotes allows an application to implement custom formatting at
+          build time instead of runtime.
+          An example of this is implemented for this site. When using three or more single quote pairs,
           instead of individual characters, you write the actual byte values (0-255) separated by spaces.
         </p>
         <p>
