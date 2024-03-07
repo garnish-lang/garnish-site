@@ -12,7 +12,9 @@
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "clean-install": "rm -r node_modules && npm install"
+    "clean": "rm -r node_modules dist docs",
+    "clean:install": "npm run clean && npm install",
+    "build-github-pages": "vite build --our-dir docs"
   },
   "dependencies": {
     "browser_garnish": "file:../browser-garnish/pkg",
