@@ -8,7 +8,7 @@ import topLevelAwait from 'vite-plugin-top-level-await'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "https://garnish-lang.github.io/garnish-site/",
+  base: "/garnish-site/",
   plugins: [
     vue(),
     vuetify(),
