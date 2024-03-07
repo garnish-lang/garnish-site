@@ -52,10 +52,10 @@ jobs:
           path: garnish-site
       - name: Set up Node
         uses: actions/setup-node@v4
-        working-directory: garnish-site
         with:
           node-version: 18
           cache: 'npm'
+          cache-dependency-path: 'garnish-site/package-lock.json'
       - name: Install dependencies
         working-directory: garnish-site
         run: npm install
