@@ -26,10 +26,29 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+      path: browser-garnish
     runs-on: ubuntu-latest
     steps:
+        # Browser Garnish Steps
+      - name: Checkout Browser Garnish
+        uses: actions/checkout@v4
+        repository: garnish-lang/browser-garnish
+      - name: Install wasm-pack
+        run: cargo install wasm-pack
+      - name: Switch to Browser Garnish
+        run: cd browser-garnish
+      - name: Build Browser Garnish
+        run: cargo build --verbose
+      - name: Test Browser Garnish
+        run: cargo test --verbose
+      - name: Build Browser Garnish
+        run: wasm-pack build
+        # Site Steps
       - name: Checkout
         uses: actions/checkout@v4
+        path: garnish-site
+      - name: Switch to site
+        run: cd ../garnish-site
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
