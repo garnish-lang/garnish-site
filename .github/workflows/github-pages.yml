@@ -63,7 +63,7 @@ jobs:
         working-directory: garnish-site
         run: npm run build-only
       - name: Move Dist
-        run: mv -r garnish-site/dist dist
+        run: mv garnish-site/dist dist
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
