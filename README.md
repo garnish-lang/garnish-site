@@ -6,6 +6,9 @@ View [here](https://garnish-lang.github.io/garnish-site/)
 
 ## Project Setup
 Requires the [Browser Garnish](https://github.com/garnish-lang/browser-garnish) to be in a sibling directory.
+Any changes to it will have to be force update `npm clean:install` script provided for convenience.
+
+### Dependencies
 
 ```sh
 npm install
