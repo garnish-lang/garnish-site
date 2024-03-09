@@ -92,7 +92,6 @@ function startDrag(e: MouseEvent) {
 }
 
 function drag(e: MouseEvent) {
-  console.log('drag')
   if (dragging.value) {
     let dif = dragStartY.value - e.y
     footerHeight.value += dif
@@ -104,8 +103,6 @@ function drag(e: MouseEvent) {
     }
 
     dragStartY.value = e.y
-
-    console.log('drag', window.innerHeight, dif)
   }
 }
 
