@@ -108,6 +108,7 @@ store.$subscribe((mutation, state) => {
       <v-list-item link title="Expressions" to="/expressions" prepend-icon="mdi-code-braces"></v-list-item>
       <v-list-item link title="Side Effects" to="/side-effects" prepend-icon="mdi-code-brackets"></v-list-item>
       <v-list-item link title="Annotations" to="/annotations" prepend-icon="mdi-at"></v-list-item>
+      <v-list-item link title="*fix Operations" to="/fix-operations" prepend-icon="mdi-asterisk"></v-list-item>
     </v-navigation-drawer>
     <v-main>
       <RouterView />

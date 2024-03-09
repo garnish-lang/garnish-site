@@ -11,6 +11,7 @@ import Bitwise from '@/pages/Bitwise.vue'
 import Expressions from '@/pages/Expressions.vue'
 import SideEffects from '@/pages/SideEffects.vue'
 import Annotations from '@/pages/Annotations.vue'
+import FixOperators from '@/pages/FixOperators.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -74,6 +75,11 @@ const router = createRouter({
       path: '/annotations',
       name: 'annotations',
       component: Annotations
+    },
+    {
+      path: '/fix-operations',
+      name: 'fixOperations',
+      component: FixOperators
     }
   ]
 })
