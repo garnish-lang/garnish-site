@@ -29,7 +29,7 @@ const byteExamples = [
 
 const symbolsExamples = [
   AppScript.make('identifiers', 'Math::PI Math::IntegerMax Math::FloatMax'),
-  AppScript.make('symbols', ';my_symbol ;another_symbol')
+  AppScript.make('symbols', ':my_symbol :another_symbol')
 ]
 
 const typeExamples = [
@@ -158,7 +158,8 @@ const typeExamples = [
         </p>
         <p>
           Symbols are numeric representations of identifiers so identifiers can be used in comparisons and making lists.
-          They are made by preceding an identifier with a semicolon <code class="v-code">;</code>
+          They are made by preceding an identifier with a single colon <code class="v-code">:</code>. If more than one
+          colon is at the start of an identifier it will not be considered a symbol.
         </p>
         <p>
           Note: this site resolves a symbol back to its name for output but that is not guaranteed functionality for an

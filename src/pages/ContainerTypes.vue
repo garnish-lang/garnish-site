@@ -21,7 +21,7 @@ const listExamples = [
   AppScript.make('list_across_lines', '10 20 30\n40 50 60\n70 80 90'),
   AppScript.make('list_of_lists', '10 20 30, 40 50 60, 70 80 90'),
   AppScript.make('list_access', '10 20 30, 40 50 60, 70 80 90\n\n$.1.2'),
-  AppScript.make('associations', ';key = "value" ;data = 12345\n\n$.data key')
+  AppScript.make('associations', ':key = "value" :data = 12345\n\n$.data key')
 ]
 
 const concatenationExamples = [
