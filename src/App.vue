@@ -113,7 +113,7 @@ store.$subscribe((mutation, state) => {
     <v-main>
       <RouterView />
     </v-main>
-    <v-footer app :height="750">
+    <v-footer app :height="400">
       <v-row>
         <v-col>
           <v-btn block size="x-small" variant="text">
