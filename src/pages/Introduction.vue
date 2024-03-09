@@ -35,7 +35,21 @@ const scripts = [
     </PageSection>
     <PageSection>
       <template v-slot:left>
-        <h2>Script Tools</h2>
+        <h3>Resources</h3>
+        <p>
+          Core library source and documentation. <a target="_blank" href="https://github.com/garnish-lang/garnish-core">Github</a>
+        </p>
+        <p>
+          This sites source. <a target="_blank" href="https://github.com/garnish-lang/garnish-site">Github</a>
+        </p>
+        <p>
+          WebAssembly library for Garnish this site uses. <a target="_blank" href="https://github.com/garnish-lang/browser-garnish">Github</a>
+        </p>
+      </template>
+    </PageSection>
+    <PageSection>
+      <template v-slot:left>
+        <h2>Using this Site</h2>
         <h3>Editor</h3>
         <p>
           At the bottom of the screen, there is an area for trying out what you learn throughout this tutorial.
@@ -115,5 +129,7 @@ const scripts = [
 </template>
 
 <style scoped>
-
+a {
+  text-decoration: none;
+}
 </style>
