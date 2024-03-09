@@ -13,6 +13,10 @@ const newScriptName = defineModel<string>()
 
 const showOverlay = computed(() => overlayTitle.value !== null)
 
+const dragging = ref(false)
+const dragStartY = ref(0)
+const footerHeight = ref(400)
+
 const namePattern = /^[a-zA-Z_][a-zA-Z0-9_]*$/
 const nameRules = [
   (value: string) => namePattern.test(value) || 'Names can only contain alphanumeric and underscore characters',
@@ -82,6 +86,33 @@ function executionListSelect(value) {
   }
 }
 
+function startDrag(e: MouseEvent) {
+  dragging.value = true
+  dragStartY.value = e.y
+}
+
+function drag(e: MouseEvent) {
+  console.log('drag')
+  if (dragging.value) {
+    let dif = dragStartY.value - e.y
+    footerHeight.value += dif
+
+    if (footerHeight.value < 250) {
+      footerHeight.value = 250
+    } else if (footerHeight.value >= window.innerHeight) {
+      footerHeight.value = window.innerHeight
+    }
+
+    dragStartY.value = e.y
+
+    console.log('drag', window.innerHeight, dif)
+  }
+}
+
+function endDrag(e: MouseEvent) {
+  dragging.value = false
+}
+
 store.$subscribe((mutation, state) => {
   localStorage.setItem('state', JSON.stringify(state))
 })
@@ -89,7 +120,7 @@ store.$subscribe((mutation, state) => {
 </script>
 
 <template>
-  <v-app>
+  <v-app @mousemove="drag" @mouseup="endDrag">
     <v-navigation-drawer :rail="rail" @click="rail = false">
       <v-list-item title="Garnish"
                    :prepend-icon="rail ? 'mdi-arrow-expand-right' : 'mdi-arrow-collapse-left'"
@@ -113,10 +144,10 @@ store.$subscribe((mutation, state) => {
     <v-main>
       <RouterView />
     </v-main>
-    <v-footer app :height="400">
+    <v-footer app :height="footerHeight">
       <v-row>
         <v-col>
-          <v-btn block size="x-small" variant="text">
+          <v-btn block size="x-small" variant="text" @mousedown="startDrag">
             <v-icon icon="mdi-arrow-split-horizontal"></v-icon>
           </v-btn>
         </v-col>
@@ -250,5 +281,8 @@ store.$subscribe((mutation, state) => {
   opacity: 1;
 }
 
+.v-footer {
+  transition: none;
+}
 
 </style>
