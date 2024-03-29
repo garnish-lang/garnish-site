@@ -16,6 +16,7 @@ const showOverlay = computed(() => overlayTitle.value !== null)
 const dragging = ref(false)
 const dragStartY = ref(0)
 const footerHeight = ref(400)
+const lastSelected = ref(store.currentScript)
 
 const namePattern = /^[a-zA-Z_][a-zA-Z0-9_]*$/
 const nameRules = [
@@ -41,6 +42,9 @@ function handleInputSelection(item) {
 }
 
 function handleScriptSelection(item) {
+  if (item !== -1) {
+    lastSelected.value = item
+  }
   store.setCurrentScript(item)
 }
 
@@ -51,21 +55,26 @@ function deleteScript(index: number) {
 function closeOverlay() {
   overlayTitle.value = null
   newScriptName.value = ''
+  store.setCurrentScript(lastSelected.value)
 }
 
 function finishNameOverlay() {
   if (!newScriptName.value) {
-    closeOverlay()
+    overlayTitle.value = null
+    newScriptName.value = ''
     return
   }
 
   if (overlayTitle.value === 'New Script') {
+    let newIndex = store.scripts.length
     store.newScript(newScriptName.value)
+    store.setCurrentScript(newIndex)
   } else {
     store.renameScript(store.currentScript, newScriptName.value)
   }
 
-  closeOverlay()
+  overlayTitle.value = null
+  newScriptName.value = ''
 }
 
 function setCreateOverlay() {
@@ -131,32 +140,36 @@ store.$subscribe((mutation, state) => {
           </v-btn>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col class="overflow-hidden">
-          <v-tabs show-arrows @update:model-value="handleScriptSelection" :model-value="store.currentScript">
-            <v-tab class="script-tab script-name"
-                   v-for="[index, script] in store.scripts.entries()"
-                   :key="script.name"
-                   :value="index">
-              {{ script.name }}
-              <v-btn class="tab-close-btn"
-                     @click.prevent.stop="deleteScript(index)"
-                     icon="mdi-close-circle"
-                     size="small"
-                     elevation="0"
-                     density="compact"></v-btn>
-            </v-tab>
-          </v-tabs>
-        </v-col>
-        <v-col>
+      <v-row class="no-scroll" align-items="stretch">
+        <v-col class="overflow-hidden" cols="12" sm="12" md="6">
+
           <v-row>
-            <v-col>
-              <v-btn size="large" variant="tonal" block @click="setCreateOverlay" color="primary">New</v-btn>
-            </v-col>
-            <v-col>
-              <v-btn size="large" variant="tonal" block @click="setRenameOverlay" color="secondary">Rename</v-btn>
-            </v-col>
-            <v-spacer />
+
+            <v-tabs show-arrows @update:model-value="handleScriptSelection" :model-value="store.currentScript">
+              <v-tab class="script-name" @click="setCreateOverlay" key="create" :value="-1">
+                <v-icon icon="mdi-plus" size="24" />
+              </v-tab>
+              <v-tab class="script-tab script-name"
+                     v-for="[index, script] in store.scripts.entries()"
+                     @dblclick="setRenameOverlay"
+                     :key="script.name"
+                     :value="index">
+                {{ script.name }}
+                <v-btn icon="mdi-close-circle"
+                       @click.prevent.stop="deleteScript(index)"
+                       size="small"
+                       elevation="0"
+                       density="compact"></v-btn>
+              </v-tab>
+            </v-tabs>
+          </v-row>
+
+          <v-row>
+            <CodeEditor />
+          </v-row>
+        </v-col>
+        <v-col cols="12" sm="12" md="6">
+          <v-row>
             <v-col>
               <v-combobox label="Input" clearable variant="solo-filled"
                           density="comfortable"
@@ -180,14 +193,9 @@ store.$subscribe((mutation, state) => {
               </v-btn-group>
             </v-col>
           </v-row>
-        </v-col>
-      </v-row>
-      <v-row class="no-scroll" align-items="stretch">
-        <v-col>
-          <CodeEditor />
-        </v-col>
-        <v-col class="scrollable">
-          <ResultsView />
+          <v-row>
+            <ResultsView />
+          </v-row>
         </v-col>
       </v-row>
       <v-overlay v-model="showOverlay" class="align-center justify-center" contained @click:outside="closeOverlay">
@@ -221,7 +229,8 @@ store.$subscribe((mutation, state) => {
       <v-list-item link title="Introduction" to="/" prepend-icon="mdi-home"></v-list-item>
       <v-list-item link title="Primer" to="/primer" prepend-icon="mdi-alpha"></v-list-item>
       <v-list-item link title="Basic Types" to="/basic-types" prepend-icon="mdi-chart-arc"></v-list-item>
-      <v-list-item link title="Container Types" to="/container-types" prepend-icon="mdi-package-variant-closed"></v-list-item>
+      <v-list-item link title="Container Types" to="/container-types"
+                   prepend-icon="mdi-package-variant-closed"></v-list-item>
       <v-list-item link title="Math" to="/math-ops" prepend-icon="mdi-plus-minus-variant"></v-list-item>
       <v-list-item link title="Bitwise" to="/bitwise" prepend-icon="mdi-numeric-10"></v-list-item>
       <v-list-item link title="Comparisons" to="/comparisons" prepend-icon="mdi-greater-than-or-equal"></v-list-item>
@@ -248,7 +257,7 @@ store.$subscribe((mutation, state) => {
   padding: 1rem;
 }
 
-.v-footer > .v-row:nth-child(1), .v-footer > .v-row:nth-child(2) {
+.v-footer > .v-row:nth-child(1) {
   flex-grow: 0;
 }
 

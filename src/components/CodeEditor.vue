@@ -4,7 +4,7 @@ import { useAppStore } from '@/stores/AppStore'
 import { computed } from 'vue'
 
 const store = useAppStore();
-const text = computed(() => store.scripts[store.currentScript].script)
+const text = computed(() => store.scripts[store.currentScript]?.script || "")
 
 function onKeyDown(e: KeyboardEvent) {
   if (e.code === 'Tab') {
