@@ -158,7 +158,7 @@ store.$subscribe((mutation, state) => {
     <v-footer app :height="store.footerHeight">
       <v-row>
         <v-col>
-          <v-btn size="x-small" variant="text" @mousedown="startDrag" @touchstart.prevent.stop="startDrag">
+          <v-btn block size="x-small" variant="text" @mousedown="startDrag" @touchstart.prevent.stop="startDrag">
             <v-icon icon="mdi-arrow-split-horizontal"></v-icon>
           </v-btn>
         </v-col>
