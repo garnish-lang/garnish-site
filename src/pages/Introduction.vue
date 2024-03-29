@@ -4,7 +4,15 @@ import Page from '@/pages/Page.vue'
 import ScriptExample from '@/components/ScriptExample.vue'
 import { AppScript } from '@/stores/types'
 import PageSection from '@/components/PageSection.vue'
-import { CopyCreateFileIcon, ExecuteIcon, ExecuteUserInputIcon, ReplaceFileIcon } from '@/stores/constants'
+import {
+  BrowserGarnishURL,
+  CopyCreateFileIcon,
+  ExecuteIcon,
+  ExecuteUserInputIcon,
+  GarnishCoreURL, GarnishSiteURL,
+  ReplaceFileIcon
+} from '@/stores/constants'
+import { GarnishScript } from '../../../browser-garnish/pkg'
 
 const scripts = [
   AppScript.make('add_5', '$ + 5'),
@@ -37,13 +45,13 @@ const scripts = [
       <template v-slot:left>
         <h3>Resources</h3>
         <p>
-          Core library source and documentation. <a target="_blank" href="https://github.com/garnish-lang/garnish-core">Github</a>
+          Core library source and documentation. <a target="_blank" :href="GarnishCoreURL">Github</a>
         </p>
         <p>
-          This sites source. <a target="_blank" href="https://github.com/garnish-lang/garnish-site">Github</a>
+          This sites source. <a target="_blank" :href="GarnishSiteURL">Github</a>
         </p>
         <p>
-          WebAssembly library for Garnish this site uses. <a target="_blank" href="https://github.com/garnish-lang/browser-garnish">Github</a>
+          WebAssembly library for Garnish this site uses. <a target="_blank" :href="BrowserGarnishURL">Github</a>
         </p>
       </template>
     </PageSection>

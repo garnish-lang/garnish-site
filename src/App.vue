@@ -4,6 +4,7 @@ import { computed, ref } from 'vue'
 import CodeEditor from '@/components/CodeEditor.vue'
 import ResultsView from '@/components/ResultsView.vue'
 import { useAppStore } from '@/stores/AppStore'
+import { GarnishSiteURL } from '@/stores/constants'
 
 const store = useAppStore()
 const rail = ref(true)
@@ -150,11 +151,14 @@ store.$subscribe((mutation, state) => {
     <v-app-bar>
       <v-app-bar-nav-icon variant="text" @click.stop="rail = !rail"></v-app-bar-nav-icon>
       <v-app-bar-title>The Garnish Language</v-app-bar-title>
+      <a class="github-link" target="_blank" :href="GarnishSiteURL">
+        <img alt="GitHub" src="@/assets/github-mark-white.png" />
+      </a>
     </v-app-bar>
     <v-footer app :height="store.footerHeight">
       <v-row>
         <v-col>
-          <v-btn block size="x-small" variant="text" @mousedown="startDrag" @touchstart.prevent.stop="startDrag">
+          <v-btn size="x-small" variant="text" @mousedown="startDrag" @touchstart.prevent.stop="startDrag">
             <v-icon icon="mdi-arrow-split-horizontal"></v-icon>
           </v-btn>
         </v-col>
@@ -323,6 +327,18 @@ store.$subscribe((mutation, state) => {
 
 .script-area > textarea {
   flex-grow: 1
+}
+
+.github-link {
+  height: 30px;
+  width: 30px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.github-link > img {
+  height: 100%;
+  width: 100%;
 }
 
 </style>
