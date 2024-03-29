@@ -32,7 +32,7 @@ export const useAppStore = defineStore('app', () => {
   const currentScript = ref<number>(saved?.currentScript || 0)
   const inputScript = ref<number | null>(saved?.inputScript || null)
   const executionsLimit = ref(100)
-  const footerHeight = ref(saved?.footerHeight || 400)
+  const footerHeight = ref(saved?.footerHeight || 250)
 
   function newScript(name: string, text: string | null = null) {
     let s = new AppScript(name)
