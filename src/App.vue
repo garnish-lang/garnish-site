@@ -148,7 +148,7 @@ store.$subscribe((mutation, state) => {
          @touchend.prevent.stop="endDrag"
          @touchcancel.prevent.stop="endDrag">
 
-    <v-app-bar>
+    <v-app-bar flat>
       <v-app-bar-nav-icon variant="text" @click.stop="rail = !rail"></v-app-bar-nav-icon>
       <v-app-bar-title>The Garnish Language</v-app-bar-title>
       <a class="github-link" target="_blank" :href="GarnishSiteURL">
@@ -339,6 +339,14 @@ store.$subscribe((mutation, state) => {
 .github-link > img {
   height: 100%;
   width: 100%;
+}
+
+.v-app-bar {
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, .2);
+}
+
+.v-footer {
+  box-shadow: 0px -3px 10px 0px rgba(0, 0, 0, .2);
 }
 
 </style>
