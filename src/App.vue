@@ -268,6 +268,18 @@ store.$subscribe((mutation, state) => {
   width: 30vw;
 }
 
+@media screen and (max-width: 1280px) {
+  .overlay-main {
+    width: 60vw;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .overlay-main {
+    width: 90vw;
+  }
+}
+
 .script-tab .v-btn {
   margin-left: 1rem;
   opacity: .1;
