@@ -5,10 +5,10 @@ import Page from '@/pages/Page.vue'
 
 <template>
   <v-row>
-    <v-col>
+    <v-col cols="12" sm="12" md="6">
       <slot name="left"/>
     </v-col>
-    <v-col>
+    <v-col cols="12" sm="12" md="6">
       <slot name="right"/>
     </v-col>
   </v-row>
