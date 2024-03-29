@@ -94,25 +94,38 @@ function executionListSelect(value) {
   }
 }
 
-function startDrag(e: MouseEvent) {
+function startDrag(e: MouseEvent | TouchEvent) {
   dragging.value = true
-  dragStartY.value = e.y
+  if (e instanceof MouseEvent) {
+    dragStartY.value = e.y
+  } else if (e instanceof TouchEvent) {
+    let touch = e.touches[0]
+    dragStartY.value = touch.pageY
+  }
 }
 
-function drag(e: MouseEvent) {
+function drag(e: MouseEvent | TouchEvent) {
   if (dragging.value) {
-    let dif = dragStartY.value - e.y
+    let dif = 0
+    if (e instanceof MouseEvent) {
+      dif = dragStartY.value - e.y
+      dragStartY.value = e.y
+    } else if (e instanceof TouchEvent) {
+      let touch = e.touches[0]
+      dif = dragStartY.value - touch.pageY
+      dragStartY.value = touch.pageY
+    }
+
+
     store.footerHeight += dif
 
     const maxHeight = window.innerHeight - 65
 
-    if (store.footerHeight < 250) {
-      store.footerHeight = 250
+    if (store.footerHeight < 100) {
+      store.footerHeight = 100
     } else if (store.footerHeight >= maxHeight) {
       store.footerHeight = maxHeight
     }
-
-    dragStartY.value = e.y
   }
 }
 
@@ -127,7 +140,12 @@ store.$subscribe((mutation, state) => {
 </script>
 
 <template>
-  <v-app @mousemove="drag" @mouseup="endDrag">
+  <v-app @mousemove="drag"
+         @mouseup="endDrag"
+         @mouseleave="endDrag"
+         @touchmove.prevent.stop="drag"
+         @touchend.prevent.stop="endDrag"
+         @touchcancel.prevent.stop="endDrag">
 
     <v-app-bar>
       <v-app-bar-nav-icon variant="text" @click.stop="rail = !rail"></v-app-bar-nav-icon>
@@ -136,7 +154,7 @@ store.$subscribe((mutation, state) => {
     <v-footer app :height="store.footerHeight">
       <v-row>
         <v-col>
-          <v-btn block size="x-small" variant="text" @mousedown="startDrag">
+          <v-btn block size="x-small" variant="text" @mousedown="startDrag" @touchstart.prevent.stop="startDrag">
             <v-icon icon="mdi-arrow-split-horizontal"></v-icon>
           </v-btn>
         </v-col>
