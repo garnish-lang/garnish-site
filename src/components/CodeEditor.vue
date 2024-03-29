@@ -31,7 +31,6 @@ function onInput(e: Event) {
 textarea {
   resize: none;
   outline: none;
-  height: 100%;
   width: 100%;
   padding: .5rem;
   font-family: monospace;

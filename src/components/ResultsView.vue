@@ -18,12 +18,22 @@ const reversed = computed(() => {
 
   return items.reverse()
 })
+
+const maxPanelsHeight = computed(() => {
+  // a magic number for used space in footer
+  // until can get CSS to work
+  const usedHeight = 150;
+  const newHeight = (store.footerHeight - usedHeight)
+  return `${newHeight}px`
+})
 </script>
 
 <template>
   <div>
-    <v-expansion-panels>
-      <v-expansion-panel v-for="execution in reversed" :key="execution.execution_no" :text="execution.script"
+    <v-expansion-panels :style="{overflow: 'hidden', maxHeight: maxPanelsHeight}">
+      <v-expansion-panel v-for="execution in reversed"
+                         :key="execution.execution_no"
+                         :text="execution.script"
                          :title="execution.result">
         <template v-slot:text>
           <v-code v-if="execution.input_script">{{ execution.input_script }}</v-code>

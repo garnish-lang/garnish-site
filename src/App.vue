@@ -15,7 +15,6 @@ const showOverlay = computed(() => overlayTitle.value !== null)
 
 const dragging = ref(false)
 const dragStartY = ref(0)
-const footerHeight = ref(400)
 const lastSelected = ref(store.currentScript)
 
 const namePattern = /^[a-zA-Z_][a-zA-Z0-9_]*$/
@@ -103,12 +102,14 @@ function startDrag(e: MouseEvent) {
 function drag(e: MouseEvent) {
   if (dragging.value) {
     let dif = dragStartY.value - e.y
-    footerHeight.value += dif
+    store.footerHeight += dif
 
-    if (footerHeight.value < 250) {
-      footerHeight.value = 250
-    } else if (footerHeight.value >= window.innerHeight) {
-      footerHeight.value = window.innerHeight
+    const maxHeight = window.innerHeight - 65
+
+    if (store.footerHeight < 250) {
+      store.footerHeight = 250
+    } else if (store.footerHeight >= maxHeight) {
+      store.footerHeight = maxHeight
     }
 
     dragStartY.value = e.y
@@ -132,7 +133,7 @@ store.$subscribe((mutation, state) => {
       <v-app-bar-nav-icon variant="text" @click.stop="rail = !rail"></v-app-bar-nav-icon>
       <v-app-bar-title>The Garnish Language</v-app-bar-title>
     </v-app-bar>
-    <v-footer app :height="footerHeight">
+    <v-footer app :height="store.footerHeight">
       <v-row>
         <v-col>
           <v-btn block size="x-small" variant="text" @mousedown="startDrag">
@@ -140,33 +141,27 @@ store.$subscribe((mutation, state) => {
           </v-btn>
         </v-col>
       </v-row>
-      <v-row class="no-scroll" align-items="stretch">
-        <v-col class="overflow-hidden" cols="12" sm="12" md="6">
+      <v-row>
+        <v-col cols="12" sm="12" md="6" class="script-area">
 
-          <v-row>
-
-            <v-tabs show-arrows @update:model-value="handleScriptSelection" :model-value="store.currentScript">
-              <v-tab class="script-name" @click="setCreateOverlay" key="create" :value="-1">
-                <v-icon icon="mdi-plus" size="24" />
-              </v-tab>
-              <v-tab class="script-tab script-name"
-                     v-for="[index, script] in store.scripts.entries()"
-                     @dblclick="setRenameOverlay"
-                     :key="script.name"
-                     :value="index">
-                {{ script.name }}
-                <v-btn icon="mdi-close-circle"
-                       @click.prevent.stop="deleteScript(index)"
-                       size="small"
-                       elevation="0"
-                       density="compact"></v-btn>
-              </v-tab>
-            </v-tabs>
-          </v-row>
-
-          <v-row>
-            <CodeEditor />
-          </v-row>
+          <v-tabs show-arrows @update:model-value="handleScriptSelection" :model-value="store.currentScript">
+            <v-tab class="script-name" @click="setCreateOverlay" key="create" :value="-1">
+              <v-icon icon="mdi-plus" size="24" />
+            </v-tab>
+            <v-tab class="script-tab script-name"
+                   v-for="[index, script] in store.scripts.entries()"
+                   @dblclick="setRenameOverlay"
+                   :key="script.name"
+                   :value="index">
+              {{ script.name }}
+              <v-btn icon="mdi-close-circle"
+                     @click.prevent.stop="deleteScript(index)"
+                     size="small"
+                     elevation="0"
+                     density="compact"></v-btn>
+            </v-tab>
+          </v-tabs>
+          <CodeEditor />
         </v-col>
         <v-col cols="12" sm="12" md="6">
           <v-row>
@@ -193,9 +188,7 @@ store.$subscribe((mutation, state) => {
               </v-btn-group>
             </v-col>
           </v-row>
-          <v-row>
-            <ResultsView />
-          </v-row>
+          <ResultsView />
         </v-col>
       </v-row>
       <v-overlay v-model="showOverlay" class="align-center justify-center" contained @click:outside="closeOverlay">
@@ -255,6 +248,7 @@ store.$subscribe((mutation, state) => {
   align-items: stretch;
   align-content: start;
   padding: 1rem;
+  transition: none;
 }
 
 .v-footer > .v-row:nth-child(1) {
@@ -288,8 +282,17 @@ store.$subscribe((mutation, state) => {
   opacity: 1;
 }
 
-.v-footer {
-  transition: none;
+.script-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.script-area > .v-tabs {
+  flex-grow: 0;
+}
+
+.script-area > textarea {
+  flex-grow: 1
 }
 
 </style>

@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { ExecutionResult, AppScript } from '@/stores/types'
 import { GarnishScript } from 'browser_garnish'
+import { he } from 'vuetify/locale'
 
 function getExecutionResult(script: GarnishScript): string {
   script.compile()
@@ -31,6 +32,7 @@ export const useAppStore = defineStore('app', () => {
   const currentScript = ref<number>(saved?.currentScript || 0)
   const inputScript = ref<number | null>(saved?.inputScript || null)
   const executionsLimit = ref(100)
+  const footerHeight = ref(saved?.footerHeight || 400)
 
   function newScript(name: string, text: string | null = null) {
     let s = new AppScript(name)
@@ -97,11 +99,16 @@ export const useAppStore = defineStore('app', () => {
     currentScript.value = index
   }
 
+  function setFooterHeight(height: number) {
+    footerHeight.value = height
+  }
+
   return {
     scripts,
     executions,
     currentScript,
     inputScript,
+    footerHeight,
     newScript,
     deleteScript,
     renameScript,
@@ -110,6 +117,7 @@ export const useAppStore = defineStore('app', () => {
     executeDefinedScript,
     clearExecutions,
     setCurrentScript,
-    setInputScript
+    setInputScript,
+    setFooterHeight,
   }
 })
