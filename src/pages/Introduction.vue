@@ -50,13 +50,27 @@ const scripts = [
     <PageSection>
       <template v-slot:left>
         <h2>Using this Site</h2>
+      </template>
+    </PageSection>
+    <PageSection>
+      <template v-slot:left>
         <h3>Editor</h3>
         <p>
           At the bottom of the screen, there is an area for trying out what you learn throughout this tutorial.
           On the left is a script editor with a list of available scripts above.
+        </p>
+        <p>
           Click on the name of the script to make it active for editing.
+        </p>
+        <p>
           Click on the 'x' icon next to the name to delete the script.
           Deleting the last script will automatically create a new one, so there will always be a script to edit.
+        </p>
+        <p>
+          Click the "+" icon to create a new script. A prompt will appear to enter the name.
+        </p>
+        <p>
+          Double click the name of the active script to rename it. A prompt will appear to enter the name.
         </p>
       </template>
       <template v-slot:right>
@@ -65,13 +79,6 @@ const scripts = [
           On the right are command buttons and an output display. The commands buttons do the following:
         </p>
         <dl>
-          <dd>
-            <span class="definition-word">New</span> - Prompts for a name and creates a new script on confirmation.
-          </dd>
-          <dd>
-            <span class="definition-word">Rename</span> - Prompts for a name and renames the current script on
-            confirmation.
-          </dd>
           <dd>
             <span class="definition-word">Input</span> - Allows you to select one of your scripts to be the input during
             execution.
